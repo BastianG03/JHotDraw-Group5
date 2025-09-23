@@ -33,7 +33,7 @@ import org.jhotdraw.geom.GrowStroke;
  * @author Werner Randelshofer
  * @version $Id$
  */
-public class TriangleFigure extends AbstractAttributedFigure {
+public class TriangleFigure extends AbstractAttributedRectangularFigure {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -57,7 +57,8 @@ public class TriangleFigure extends AbstractAttributedFigure {
     }
 
     public TriangleFigure(double x, double y, double width, double height, Orientation direction) {
-        rectangle = new Rectangle2D.Double(x, y, width, height);
+        super(new Rectangle2D.Double(x, y, width, height));
+        rectangle = (Rectangle2D.Double)this.rectangularShape;
         set(ORIENTATION, direction);
     }
 
@@ -197,14 +198,6 @@ public class TriangleFigure extends AbstractAttributedFigure {
             triangle = gs.createStrokedShape(triangle);
         }
         return triangle.contains(p);
-    }
-
-    @Override
-    public void setBounds(Point2D.Double anchor, Point2D.Double lead) {
-        rectangle.x = Math.min(anchor.x, lead.x);
-        rectangle.y = Math.min(anchor.y, lead.y);
-        rectangle.width = Math.max(0.1, Math.abs(lead.x - anchor.x));
-        rectangle.height = Math.max(0.1, Math.abs(lead.y - anchor.y));
     }
 
     @Override

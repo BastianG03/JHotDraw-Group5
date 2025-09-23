@@ -32,7 +32,7 @@ import org.jhotdraw.xml.DOMOutput;
  * @author Werner Randelshofer
  * @version $Id$
  */
-public class RoundRectangleFigure extends AbstractAttributedFigure {
+public class RoundRectangleFigure extends AbstractAttributedRectangularFigure {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -54,11 +54,8 @@ public class RoundRectangleFigure extends AbstractAttributedFigure {
     }
 
     public RoundRectangleFigure(double x, double y, double width, double height) {
-        roundrect = new RoundRectangle2D.Double(x, y, width, height, DEFAULT_ARC, DEFAULT_ARC);
-        /*
-    FILL_COLOR.set(this, Color.white);
-    STROKE_COLOR.set(this, Color.black);
-         */
+        super(new RoundRectangle2D.Double(x, y, width, height, DEFAULT_ARC, DEFAULT_ARC))
+        roundrect = (RoundRectangle2D.Double)this.rectangularShape;
     }
 
     // DRAWING
@@ -160,14 +157,6 @@ public class RoundRectangleFigure extends AbstractAttributedFigure {
         r.arcwidth += grow * 2;
         r.archeight += grow * 2;
         return r.contains(p);
-    }
-
-    @Override
-    public void setBounds(Point2D.Double anchor, Point2D.Double lead) {
-        roundrect.x = Math.min(anchor.x, lead.x);
-        roundrect.y = Math.min(anchor.y, lead.y);
-        roundrect.width = Math.max(0.1, Math.abs(lead.x - anchor.x));
-        roundrect.height = Math.max(0.1, Math.abs(lead.y - anchor.y));
     }
 
     /**

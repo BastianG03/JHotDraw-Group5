@@ -12,6 +12,7 @@ import java.awt.geom.*;
 import org.jhotdraw.draw.AttributeKeys;
 import org.jhotdraw.draw.connector.ChopEllipseConnector;
 import org.jhotdraw.draw.connector.Connector;
+import org.jhotdraw.geom.Dimension2DDouble;
 import org.jhotdraw.geom.Geom;
 
 /**
@@ -20,7 +21,7 @@ import org.jhotdraw.geom.Geom;
  * @author Werner Randelshofer
  * @version $Id$
  */
-public class EllipseFigure extends AbstractAttributedFigure {
+public class EllipseFigure extends AbstractAttributedRectangularFigure{
 
     private static final long serialVersionUID = 1L;
     protected Ellipse2D.Double ellipse;
@@ -43,7 +44,8 @@ public class EllipseFigure extends AbstractAttributedFigure {
      * @param height the height of the rectangle
      */
     public EllipseFigure(double x, double y, double width, double height) {
-        ellipse = new Ellipse2D.Double(x, y, width, height);
+        super(new Ellipse2D.Double(x, y, width, height));
+        ellipse = (Ellipse2D.Double)rectangularShape;
     }
 
     // DRAWING
@@ -115,14 +117,6 @@ public class EllipseFigure extends AbstractAttributedFigure {
         r.width += grow * 2;
         r.height += grow * 2;
         return r.contains(p);
-    }
-
-    @Override
-    public void setBounds(Point2D.Double anchor, Point2D.Double lead) {
-        ellipse.x = Math.min(anchor.x, lead.x);
-        ellipse.y = Math.min(anchor.y, lead.y);
-        ellipse.width = Math.max(0.1, Math.abs(lead.x - anchor.x));
-        ellipse.height = Math.max(0.1, Math.abs(lead.y - anchor.y));
     }
 
     /**
