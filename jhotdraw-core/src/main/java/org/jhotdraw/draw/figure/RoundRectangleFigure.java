@@ -54,7 +54,7 @@ public class RoundRectangleFigure extends AbstractAttributedRectangularFigure {
     }
 
     public RoundRectangleFigure(double x, double y, double width, double height) {
-        super(new RoundRectangle2D.Double(x, y, width, height, DEFAULT_ARC, DEFAULT_ARC))
+        super(new RoundRectangle2D.Double(x, y, width, height, DEFAULT_ARC, DEFAULT_ARC));
         roundrect = (RoundRectangle2D.Double)this.rectangularShape;
     }
 
