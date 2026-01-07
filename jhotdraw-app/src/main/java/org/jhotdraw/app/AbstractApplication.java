@@ -116,15 +116,9 @@ public abstract class AbstractApplication extends AbstractBean implements Applic
      */
     @Override
     public void start(List<URI> uris) {
+        final View v = openNewView();
         if (uris.isEmpty()) {
-            final View v = createView();
-            add(v);
-            v.setEnabled(false);
-            show(v);
-            // Set the start view immediately active, so that
-            // ApplicationOpenFileAction picks it up on Mac OS X.
-            setActiveView(v);
-            
+                    
             new SwingWorker() {
                 @Override
                 protected Object doInBackground() throws Exception {
@@ -139,13 +133,6 @@ public abstract class AbstractApplication extends AbstractBean implements Applic
             }.execute();
         } else {
             for (final URI uri : uris) {
-                final View v = createView();
-                add(v);
-                v.setEnabled(false);
-                show(v);
-                // Set the start view immediately active, so that
-                // ApplicationOpenFileAction picks it up on Mac OS X.
-                setActiveView(v);
                 new SwingWorker() {
                     @Override
                     protected Object doInBackground() throws Exception {
@@ -169,7 +156,17 @@ public abstract class AbstractApplication extends AbstractBean implements Applic
             }
         }
     }
-
+    @Override
+    public View openNewView() {
+        final View v = createView();
+        add(v);
+        v.setEnabled(false);
+        show(v);
+        // Set the start view immediately active, so that
+        // ApplicationOpenFileAction picks it up on Mac OS X.
+        setActiveView(v);
+        return v;
+    }
     @Override
     public final View createView() {
         View v = basicCreateView();

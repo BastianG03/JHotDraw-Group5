@@ -40,6 +40,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import org.jhotdraw.action.edit.AbstractFindAction;
@@ -176,7 +177,6 @@ public class MDIApplication extends AbstractApplication {
 
     private static final long serialVersionUID = 1L;
     private JFrame parentFrame;
-    private JScrollPane scrollPane;
     private JMDIDesktopPane desktopPane;
     private Preferences prefs;
     private LinkedList<Action> toolBarActions;
@@ -189,12 +189,13 @@ public class MDIApplication extends AbstractApplication {
 
     @Override
     public void init() {
+        JScrollPane scrollPane;
         super.init();
         initLookAndFeel();
         prefs = PreferencesUtil.userNodeForPackage((getModel() == null) ? getClass() : getModel().getClass());
         initLabels();
         parentFrame = new JFrame(getName());
-        parentFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        parentFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         parentFrame.setPreferredSize(new Dimension(600, 400));
         desktopPane = new JMDIDesktopPane();
         desktopPane.setTransferHandler(new DropFileTransferHandler());

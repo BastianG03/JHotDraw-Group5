@@ -503,4 +503,5 @@ public interface Application {
      * @return the views
      */
     public List<View> getViews();
+    public View openNewView();
 }
