@@ -632,10 +632,10 @@ public abstract class AbstractApplication extends AbstractBean implements Applic
             }
             return openChooser;
         } else {
-            URIChooser chooser = (URIChooser) v.getComponent().getClientProperty("openChooser");
+            URIChooser chooser = (URIChooser) ((JComponent) v.getComponent()).getClientProperty("openChooser");
             if (chooser == null) {
                 chooser = model.createOpenChooser(this, v);
-                v.getComponent().putClientProperty("openChooser", chooser);
+                ((JComponent) v.getComponent()).putClientProperty("openChooser", chooser);
                 chooser.getComponent().putClientProperty("view", v);
                 chooser.getComponent().putClientProperty("application", this);
                 List<URI> ruris = getRecentURIs();
@@ -671,10 +671,10 @@ public abstract class AbstractApplication extends AbstractBean implements Applic
             }
             return saveChooser;
         } else {
-            URIChooser chooser = (URIChooser) v.getComponent().getClientProperty("saveChooser");
+            URIChooser chooser = (URIChooser) ((JComponent) v.getComponent()).getClientProperty("saveChooser");
             if (chooser == null) {
                 chooser = model.createSaveChooser(this, v);
-                v.getComponent().putClientProperty("saveChooser", chooser);
+                ((JComponent) v.getComponent()).putClientProperty("saveChooser", chooser);
                 chooser.getComponent().putClientProperty("view", v);
                 chooser.getComponent().putClientProperty("application", this);
                 try {
@@ -707,10 +707,10 @@ public abstract class AbstractApplication extends AbstractBean implements Applic
             }
             return importChooser;
         } else {
-            URIChooser chooser = (URIChooser) v.getComponent().getClientProperty("importChooser");
+            URIChooser chooser = (URIChooser) ((JComponent) v.getComponent()).getClientProperty("importChooser");
             if (chooser == null) {
                 chooser = model.createImportChooser(this, v);
-                v.getComponent().putClientProperty("importChooser", chooser);
+                ((JComponent) v.getComponent()).putClientProperty("importChooser", chooser);
                 chooser.getComponent().putClientProperty("view", v);
                 chooser.getComponent().putClientProperty("application", this);
             }
@@ -738,10 +738,10 @@ public abstract class AbstractApplication extends AbstractBean implements Applic
             }
             return exportChooser;
         } else {
-            URIChooser chooser = (URIChooser) v.getComponent().getClientProperty("exportChooser");
+            URIChooser chooser = (URIChooser) ((JComponent) v.getComponent()).getClientProperty("exportChooser");
             if (chooser == null) {
                 chooser = model.createExportChooser(this, v);
-                v.getComponent().putClientProperty("exportChooser", chooser);
+                ((JComponent) v.getComponent()).putClientProperty("exportChooser", chooser);
                 chooser.getComponent().putClientProperty("view", v);
                 chooser.getComponent().putClientProperty("application", this);
             }

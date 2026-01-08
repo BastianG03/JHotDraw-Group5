@@ -7,6 +7,7 @@
  */
 package org.jhotdraw.api.app;
 
+import java.awt.Component;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URI;
@@ -74,7 +75,7 @@ import org.jhotdraw.api.gui.URIChooser;
  * <hr>
  *
  * @author Werner Randelshofer
- * @version $Id$
+ * @version $
  */
 public interface View extends Disposable {
 
